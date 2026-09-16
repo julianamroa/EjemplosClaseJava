@@ -1,0 +1,20 @@
+[Unit]
+Description=API consulta IP (Spring Boot)
+After=network.target
+
+[Service]
+Type=simple
+User=ec2-user
+WorkingDirectory=/opt/api-consulta-ip
+# Ajusta estos valores a la IP/puerto que quieres consultar:
+Environment="TARGET_IP=203.0.113.10"
+Environment="TARGET_PORT=80"
+Environment="TARGET_SCHEME=http"
+Environment="SERVER_PORT=8080"
+ExecStart=/usr/bin/java -jar /opt/api-consulta-ip/api-consulta-ip.jar
+SuccessExitStatus=143
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
