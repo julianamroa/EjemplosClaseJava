@@ -20,8 +20,37 @@ import java.util.List;
  */
 public class ConexionSqlite {
 
-    // Ruta del archivo de base de datos (se crea automáticamente si no existe)
-    private static final String URL = "jdbc:sqlite:db-eje1.db";
+    // Nombre del archivo de base de datos (se crea automáticamente si no existe)
+    private static final String NOMBRE_ARCHIVO_BD = "db-eje1.db";
+
+    // Ruta del archivo de base de datos. Se resuelve de forma robusta para que
+    // funcione tanto ejecutando el proyecto desde NetBeans como ejecutando el
+    // .jar ya empaquetado (dist/proyectoFinal1.jar) desde cualquier ubicación:
+    //  1) Si el archivo existe en el directorio de trabajo actual, se usa esa
+    //     ruta (comportamiento tradicional al correr desde el IDE).
+    //  2) Si no, se ubica junto al .jar/clases que se están ejecutando, para
+    //     que el ejecutable encuentre (o cree) la base de datos siempre en su
+    //     propia carpeta, sin importar desde dónde se invoque "java -jar".
+    private static final String URL = "jdbc:sqlite:" + resolverRutaBaseDatos();
+
+    private static String resolverRutaBaseDatos() {
+        java.io.File enDirectorioActual = new java.io.File(NOMBRE_ARCHIVO_BD);
+        if (enDirectorioActual.exists()) {
+            return enDirectorioActual.getAbsolutePath();
+        }
+
+        try {
+            java.io.File origen = new java.io.File(
+                    ConexionSqlite.class.getProtectionDomain().getCodeSource().getLocation().toURI());
+            // Si se ejecuta desde un .jar, origen es el archivo .jar; si se ejecuta
+            // desde clases sueltas (por ejemplo build/classes en el IDE), es una carpeta.
+            java.io.File carpeta = origen.isFile() ? origen.getParentFile() : origen;
+            return new java.io.File(carpeta, NOMBRE_ARCHIVO_BD).getAbsolutePath();
+        } catch (Exception e) {
+            // Último respaldo: ruta relativa original
+            return NOMBRE_ARCHIVO_BD;
+        }
+    }
 
      //─── Obtener conexión ─────────────────────────────────────────
     public static Connection conectar() {
