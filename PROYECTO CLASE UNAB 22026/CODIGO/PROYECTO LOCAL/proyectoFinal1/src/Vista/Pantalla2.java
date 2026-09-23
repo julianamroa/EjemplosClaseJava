@@ -71,6 +71,7 @@ public class Pantalla2 extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         descripcion_act_txt = new javax.swing.JTextArea();
         btn_actualizar = new javax.swing.JButton();
+        btn_eliminar = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -278,6 +279,9 @@ public class Pantalla2 extends javax.swing.JFrame {
         btn_actualizar.setText("Actualizar");
         btn_actualizar.addActionListener(this::btn_actualizarActionPerformed);
 
+        btn_eliminar.setText("Eliminar");
+        btn_eliminar.addActionListener(this::btn_eliminarActionPerformed);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -310,6 +314,8 @@ public class Pantalla2 extends javax.swing.JFrame {
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_eliminar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_actualizar)))
                 .addContainerGap())
         );
@@ -343,7 +349,9 @@ public class Pantalla2 extends javax.swing.JFrame {
                     .addComponent(jLabel12)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_actualizar)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_eliminar)
+                    .addComponent(btn_actualizar))
                 .addContainerGap())
         );
 
@@ -636,6 +644,47 @@ public class Pantalla2 extends javax.swing.JFrame {
         }
     }
 
+    private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {
+
+        int fila = jTable2.getSelectedRow();
+        if (fila < 0) {
+            JOptionPane.showMessageDialog(this,
+                    "Primero seleccione un producto de la tabla.",
+                    "Ningún producto seleccionado",
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        int id_producto = Integer.parseInt(String.valueOf(jTable2.getValueAt(fila, 0)));
+        String nombre_producto = String.valueOf(jTable2.getValueAt(fila, 1));
+
+        //Ventana de confirmación antes de eliminar el registro de la base de datos
+        int confirmacion = JOptionPane.showConfirmDialog(this,
+                "¿Está seguro de que desea eliminar el producto \"" + nombre_producto + "\"? Esta acción no se puede deshacer.",
+                "Confirmar eliminación",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE);
+
+        if (confirmacion != JOptionPane.YES_OPTION) {
+            //El usuario canceló: no se elimina nada
+            return;
+        }
+
+        //CODIGO FORMA MVC
+        Logica logica1 = new Logica();
+        logica1.crearConexion();
+        logica1.crearTablaProducto();
+        logica1.eliminarProducto(id_producto);
+
+        JOptionPane.showMessageDialog(this,
+                "El producto se eliminó correctamente.",
+                "Registro eliminado",
+                JOptionPane.INFORMATION_MESSAGE);
+
+        limpiarCamposActualizar();
+        btn_cargar_actualizaActionPerformed(evt);
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -699,6 +748,7 @@ public class Pantalla2 extends javax.swing.JFrame {
     private javax.swing.JTextField unidades_txt;
     private javax.swing.JButton btn_actualizar;
     private javax.swing.JButton btn_cargar_actualiza;
+    private javax.swing.JButton btn_eliminar;
     private javax.swing.JComboBox<String> categoria_act_combobox;
     private javax.swing.JTextArea descripcion_act_txt;
     private javax.swing.JLabel jLabel7;

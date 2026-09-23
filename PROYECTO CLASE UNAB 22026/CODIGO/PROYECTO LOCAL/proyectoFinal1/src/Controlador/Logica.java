@@ -45,6 +45,12 @@ public class Logica {
         bd.actualizarProducto(p);
     }
     
+    public void eliminarProducto(int id_producto){
+    
+        bd = new ConexionSqlite();
+        bd.eliminarProducto(id_producto);
+    }
+    
     public List<Producto> consultarProductos(){
         
         bd = new ConexionSqlite();

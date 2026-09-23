@@ -196,6 +196,23 @@ public class ConexionSqlite {
         }
     }
 
+    // ─── Eliminar un producto existente ────────────────────────────
+    public static void eliminarProducto(int id_producto) {
+        String sql = "DELETE FROM productos WHERE id_producto = ?;";
+
+        try (Connection conn = conectar();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, id_producto);
+
+            int filas = ps.executeUpdate();
+            System.out.println("✅ Producto eliminado (" + filas + " fila(s)) con id: " + id_producto);
+
+        } catch (SQLException e) {
+            System.out.println("❌ Error al eliminar producto: " + e.getMessage());
+        }
+    }
+
     // ─── Consultar todos los productos (para llenar la JTable) ────
     public static List<Producto> consultarProductos() {
         List<Producto> lista = new ArrayList<>();
