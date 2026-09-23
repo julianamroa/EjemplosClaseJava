@@ -55,6 +55,22 @@ public class Pantalla2 extends javax.swing.JFrame {
         btn_consultarbd = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        btn_cargar_actualiza = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        nombre_producto_act_txt = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        unidades_act_txt = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        precio_unitario_act_txt = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        categoria_act_combobox = new javax.swing.JComboBox<>();
+        jLabel12 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        descripcion_act_txt = new javax.swing.JTextArea();
+        btn_actualizar = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -215,15 +231,120 @@ public class Pantalla2 extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 204, 204));
 
+        jLabel7.setText("Seleccione un producto de la tabla para actualizar");
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Nombre", "Unidades", "Precio unitario", "Categoria", "Descripcion"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return false;
+            }
+        });
+        jTable2.getSelectionModel().addListSelectionListener(this::jTable2ValueChanged);
+        jScrollPane3.setViewportView(jTable2);
+
+        btn_cargar_actualiza.setText("Cargar productos");
+        btn_cargar_actualiza.addActionListener(this::btn_cargar_actualizaActionPerformed);
+
+        jLabel8.setText("Nombre producto");
+
+        jLabel9.setText("Unidades");
+
+        jLabel10.setText("Precio unitario del producto");
+
+        jLabel11.setText("Categoria");
+
+        categoria_act_combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Shampoo", "Jabones", "Maquillaje", "Esencias", "Tonicos" }));
+
+        jLabel12.setText("Descripción del producto");
+
+        descripcion_act_txt.setColumns(20);
+        descripcion_act_txt.setRows(4);
+        jScrollPane4.setViewportView(descripcion_act_txt);
+
+        btn_actualizar.setText("Actualizar");
+        btn_actualizar.addActionListener(this::btn_actualizarActionPerformed);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 575, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_cargar_actualiza)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(nombre_producto_act_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(unidades_act_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(precio_unitario_act_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(categoria_act_combobox, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_actualizar)))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 356, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_cargar_actualiza)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(nombre_producto_act_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(unidades_act_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(precio_unitario_act_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(categoria_act_combobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel12)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_actualizar)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("ACTUALIZA BD", jPanel3);
@@ -383,6 +504,138 @@ public class Pantalla2 extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btn_consultarbdActionPerformed
 
+    private void btn_cargar_actualizaActionPerformed(java.awt.event.ActionEvent evt) {
+
+        //CODIGO FORMA MVC
+        Logica logica1 = new Logica();
+
+        logica1.crearConexion();
+        logica1.crearTablaProducto();
+
+        //Traer todos los productos guardados en la base de datos
+        List<Producto> productos = logica1.consultarProductos();
+
+        //Encabezados que se van a mostrar en la tabla
+        String[] columnas = {"ID", "Nombre", "Unidades", "Precio unitario", "Categoria", "Descripcion"};
+
+        //Modelo de tabla de solo lectura, con los encabezados definidos
+        DefaultTableModel modelo = new DefaultTableModel(columnas, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        //Se recorre la lista de productos y se agrega una fila por cada uno
+        for (Producto p : productos) {
+            Object[] fila = {
+                p.id_producto,
+                p.nombre_producto,
+                p.unidades,
+                p.precio_unitario,
+                p.categoria,
+                p.descripcion
+            };
+            modelo.addRow(fila);
+        }
+
+        jTable2.setModel(modelo);
+        limpiarCamposActualizar();
+    }
+
+    private void jTable2ValueChanged(javax.swing.event.ListSelectionEvent evt) {
+
+        if (evt.getValueIsAdjusting()) {
+            return;
+        }
+
+        int fila = jTable2.getSelectedRow();
+        if (fila < 0) {
+            return;
+        }
+
+        //Cargar en los campos editables los datos del registro seleccionado en la tabla
+        nombre_producto_act_txt.setText(String.valueOf(jTable2.getValueAt(fila, 1)));
+        unidades_act_txt.setText(String.valueOf(jTable2.getValueAt(fila, 2)));
+        precio_unitario_act_txt.setText(String.valueOf(jTable2.getValueAt(fila, 3)));
+        categoria_act_combobox.setSelectedItem(String.valueOf(jTable2.getValueAt(fila, 4)));
+        descripcion_act_txt.setText(String.valueOf(jTable2.getValueAt(fila, 5)));
+    }
+
+    private void btn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {
+
+        int fila = jTable2.getSelectedRow();
+        if (fila < 0) {
+            JOptionPane.showMessageDialog(this,
+                    "Primero seleccione un producto de la tabla.",
+                    "Ningún producto seleccionado",
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        try {
+            int id_producto = Integer.parseInt(String.valueOf(jTable2.getValueAt(fila, 0)));
+            String nombre_producto = nombre_producto_act_txt.getText().trim();
+            int unidades = Integer.parseInt(unidades_act_txt.getText().trim());
+            double precio_unitario = Double.parseDouble(precio_unitario_act_txt.getText().trim());
+            String categoria = categoria_act_combobox.getSelectedItem().toString();
+            String descripcion = descripcion_act_txt.getText().trim();
+
+            if (nombre_producto.isEmpty() || descripcion.isEmpty()) {
+                JOptionPane.showMessageDialog(this,
+                        "Complete todos los campos antes de actualizar.",
+                        "Datos incompletos",
+                        JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            //Ventana de confirmación antes de guardar los cambios en la base de datos
+            int confirmacion = JOptionPane.showConfirmDialog(this,
+                    "¿Está seguro de que desea guardar los cambios del producto \"" + nombre_producto + "\"?",
+                    "Confirmar actualización",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE);
+
+            if (confirmacion != JOptionPane.YES_OPTION) {
+                //El usuario canceló: no se guarda nada
+                return;
+            }
+
+            Producto p = new Producto(nombre_producto, unidades, precio_unitario, categoria, descripcion);
+            p.id_producto = id_producto;
+
+            //CODIGO FORMA MVC
+            Logica logica1 = new Logica();
+            logica1.crearConexion();
+            logica1.crearTablaProducto();
+            logica1.actualizarProducto(p);
+
+            JOptionPane.showMessageDialog(this,
+                    "El producto se actualizó correctamente.",
+                    "Registro actualizado",
+                    JOptionPane.INFORMATION_MESSAGE);
+
+            limpiarCamposActualizar();
+            btn_cargar_actualizaActionPerformed(evt);
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this,
+                    "Unidades y precio unitario deben ser numéricos.",
+                    "Error en los datos",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void limpiarCamposActualizar() {
+        nombre_producto_act_txt.setText("");
+        unidades_act_txt.setText("");
+        precio_unitario_act_txt.setText("");
+        descripcion_act_txt.setText("");
+        if (categoria_act_combobox.getItemCount() > 0) {
+            categoria_act_combobox.setSelectedIndex(0);
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -444,6 +697,22 @@ public class Pantalla2 extends javax.swing.JFrame {
     private javax.swing.JMenuItem saveAsMenuItem;
     private javax.swing.JMenuItem saveMenuItem;
     private javax.swing.JTextField unidades_txt;
+    private javax.swing.JButton btn_actualizar;
+    private javax.swing.JButton btn_cargar_actualiza;
+    private javax.swing.JComboBox<String> categoria_act_combobox;
+    private javax.swing.JTextArea descripcion_act_txt;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTextField nombre_producto_act_txt;
+    private javax.swing.JTextField precio_unitario_act_txt;
+    private javax.swing.JTextField unidades_act_txt;
     // End of variables declaration//GEN-END:variables
 
 }

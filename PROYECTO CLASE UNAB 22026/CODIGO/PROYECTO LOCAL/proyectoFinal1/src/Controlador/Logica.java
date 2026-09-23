@@ -39,6 +39,12 @@ public class Logica {
         bd.insertarProducto(p);
     }
     
+    public void actualizarProducto(Producto p){
+    
+        bd = new ConexionSqlite();
+        bd.actualizarProducto(p);
+    }
+    
     public List<Producto> consultarProductos(){
         
         bd = new ConexionSqlite();

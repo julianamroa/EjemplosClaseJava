@@ -168,6 +168,34 @@ public class ConexionSqlite {
             System.out.println("❌ Error al insertar: " + e.getMessage());
         }
     }
+    // ─── Actualizar un producto existente ─────────────────────────
+    public static void actualizarProducto(Producto p) {
+        String sql = "UPDATE productos SET "
+                   + "nombre_producto = ?, "
+                   + "unidades = ?, "
+                   + "precio_unitario = ?, "
+                   + "categoria = ?, "
+                   + "descripcion = ? "
+                   + "WHERE id_producto = ?;";
+
+        try (Connection conn = conectar();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, p.nombre_producto);
+            ps.setInt(2, p.unidades);
+            ps.setDouble(3, p.precio_unitario);
+            ps.setString(4, p.categoria);
+            ps.setString(5, p.descripcion);
+            ps.setInt(6, p.id_producto);
+
+            int filas = ps.executeUpdate();
+            System.out.println("✅ Producto actualizado (" + filas + " fila(s)): " + p.nombre_producto);
+
+        } catch (SQLException e) {
+            System.out.println("❌ Error al actualizar producto: " + e.getMessage());
+        }
+    }
+
     // ─── Consultar todos los productos (para llenar la JTable) ────
     public static List<Producto> consultarProductos() {
         List<Producto> lista = new ArrayList<>();
