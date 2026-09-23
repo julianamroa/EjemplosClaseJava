@@ -6,6 +6,7 @@ package Vista;
 
 import Controlador.Logica;
 import Controlador.Producto;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -282,6 +283,18 @@ public class Pantalla2 extends javax.swing.JFrame {
         p1.info(p1);
         
         logica1.insertarNuevoProducto(p1);
+        
+       
+        //Crea una ventana emergente tipo MenuBar para ver la confirmación de los cambios 
+        JOptionPane.showMessageDialog(menuBar,"Los cambios se guardaron correctamente.", 
+                "Registro guardado en base de datos ", JOptionPane.INFORMATION_MESSAGE);
+        
+         //Limpiar los campos una vez que ya se han guardado en la base de datos
+        nombre_producto_txt.setText("");
+        unidades_txt.setText("");
+        precio_unitario_txt.setText("");
+        descripcion_txt.setText("");
+
         
         
         

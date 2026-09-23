@@ -37,7 +37,7 @@ public class ConsultaController {
     @GetMapping("/info")
     public Map<String, Object> info() {
         return Map.of(
-                "aplicacion", "api-consulta-ip de silvia",
+                "aplicacion", "api-consulta-ip de silvia en la clase de unab",
                 "targetBaseUrl", targetProperties.baseUrl()
         );
     }

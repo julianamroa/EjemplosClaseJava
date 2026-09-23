@@ -33,7 +33,7 @@ public class ConsultaResponse {
         ConsultaResponse r = new ConsultaResponse();
         r.exito = false;
         r.urlConsultada = url;
-        r.error = mensajeError;
+        r.error = mensajeError + "No es nuevo esta instruccion";
         return r;
     }
 }

@@ -1,6 +1,6 @@
-/Users/silviamacair/Downloads/api-consulta-ip_1/src/main/java/com/silvia/apiconsultaip/ApiConsultaIpApplication.java
-/Users/silviamacair/Downloads/api-consulta-ip_1/src/main/java/com/silvia/apiconsultaip/config/RestClientConfig.java
-/Users/silviamacair/Downloads/api-consulta-ip_1/src/main/java/com/silvia/apiconsultaip/config/TargetProperties.java
-/Users/silviamacair/Downloads/api-consulta-ip_1/src/main/java/com/silvia/apiconsultaip/controller/ConsultaController.java
-/Users/silviamacair/Downloads/api-consulta-ip_1/src/main/java/com/silvia/apiconsultaip/model/ConsultaResponse.java
-/Users/silviamacair/Downloads/api-consulta-ip_1/src/main/java/com/silvia/apiconsultaip/service/ConsultaService.java
+/Users/silviamacair/Documents/GitHub/EjemplosClaseJava/PROYECTO CLASE UNAB 22026/CODIGO/PROYECTO SPRING - WEB /api-consulta-ip_1/src/main/java/com/silvia/apiconsultaip/ApiConsultaIpApplication.java
+/Users/silviamacair/Documents/GitHub/EjemplosClaseJava/PROYECTO CLASE UNAB 22026/CODIGO/PROYECTO SPRING - WEB /api-consulta-ip_1/src/main/java/com/silvia/apiconsultaip/config/RestClientConfig.java
+/Users/silviamacair/Documents/GitHub/EjemplosClaseJava/PROYECTO CLASE UNAB 22026/CODIGO/PROYECTO SPRING - WEB /api-consulta-ip_1/src/main/java/com/silvia/apiconsultaip/config/TargetProperties.java
+/Users/silviamacair/Documents/GitHub/EjemplosClaseJava/PROYECTO CLASE UNAB 22026/CODIGO/PROYECTO SPRING - WEB /api-consulta-ip_1/src/main/java/com/silvia/apiconsultaip/controller/ConsultaController.java
+/Users/silviamacair/Documents/GitHub/EjemplosClaseJava/PROYECTO CLASE UNAB 22026/CODIGO/PROYECTO SPRING - WEB /api-consulta-ip_1/src/main/java/com/silvia/apiconsultaip/model/ConsultaResponse.java
+/Users/silviamacair/Documents/GitHub/EjemplosClaseJava/PROYECTO CLASE UNAB 22026/CODIGO/PROYECTO SPRING - WEB /api-consulta-ip_1/src/main/java/com/silvia/apiconsultaip/service/ConsultaService.java
