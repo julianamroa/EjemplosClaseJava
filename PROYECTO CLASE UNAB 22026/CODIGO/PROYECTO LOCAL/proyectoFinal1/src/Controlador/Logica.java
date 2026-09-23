@@ -5,6 +5,7 @@
 package Controlador;
 
 import Modelo.ConexionSqlite;
+import java.util.List;
 
 /**
  *
@@ -37,6 +38,14 @@ public class Logica {
         bd = new ConexionSqlite();
         bd.insertarProducto(p);
     }
+    
+    public List<Producto> consultarProductos(){
+        
+        bd = new ConexionSqlite();
+        return bd.consultarProductos();
+    }
+    
+    
     
     public static void main(String[] args) {
         

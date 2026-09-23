@@ -7,9 +7,12 @@ package Modelo;
 import Controlador.Producto;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Clase de conexión y prueba con SQLite usando JDBC
@@ -165,6 +168,33 @@ public class ConexionSqlite {
             System.out.println("❌ Error al insertar: " + e.getMessage());
         }
     }
+    // ─── Consultar todos los productos (para llenar la JTable) ────
+    public static List<Producto> consultarProductos() {
+        List<Producto> lista = new ArrayList<>();
+        String sql = "SELECT id_producto, nombre_producto, unidades, precio_unitario, categoria, descripcion FROM productos;";
+
+        try (Connection conn = conectar();
+             Statement stmt = conn.createStatement();
+             ResultSet rs   = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                Producto p = new Producto();
+                p.id_producto     = rs.getInt("id_producto");
+                p.nombre_producto = rs.getString("nombre_producto");
+                p.unidades        = rs.getInt("unidades");
+                p.precio_unitario = rs.getDouble("precio_unitario");
+                p.categoria       = rs.getString("categoria");
+                p.descripcion     = rs.getString("descripcion");
+                lista.add(p);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("❌ Error al consultar productos: " + e.getMessage());
+        }
+
+        return lista;
+    }
+
     // ─── Consultar todos los registros ────────────────────────────
     public static void consultarTodos() {
         String sql = "SELECT * FROM estudiantes;";
@@ -186,6 +216,10 @@ public class ConexionSqlite {
     }
     
         // ─── Consultar todos los registros ────────────────────────────
+    // NOTA: esta version quedo desactualizada porque la tabla "productos" ya
+    // no tiene la columna "precio" (ahora tiene unidades, precio_unitario,
+    // categoria y descripcion). Se deja corregida para que coincida con el
+    // esquema actual; para llenar la JTable se usa consultarProductos().
     public static void consultarTodos2() {
         String sql = "SELECT * FROM productos;";
 
@@ -197,7 +231,10 @@ public class ConexionSqlite {
             while (rs.next()) {
                 System.out.println("ID_Productos: "     + rs.getInt("id_producto")
                                  + " | nombre_producto: " + rs.getString("nombre_producto")
-                                 + " | precio: "   + rs.getDouble("precio"));
+                                 + " | unidades: "        + rs.getInt("unidades")
+                                 + " | precio_unitario: " + rs.getDouble("precio_unitario")
+                                 + " | categoria: "       + rs.getString("categoria")
+                                 + " | descripcion: "     + rs.getString("descripcion"));
             }
 
         } catch (SQLException e) {
